@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>roulette</title>
+</head>
+<body>
+</body>
+<script>
+
+    // მომხმარებელს ვთხოვთ სასურველი თანხის შეყვანას.
+	const MoneyAmount = prompt("Enter amount of money");
+    
+    if (MoneyAmount==="0" || MoneyAmount.length===0 ) alert("invalid");
+
+
+	const Betting = {
+        // პროგრამას შემთხვევითობის პრინციპით ვარჩევინებთ ფერსა და რიცხვს.
+		Number: {randomNumber: Math.floor(Math.random()*37), asknumber: "Enter number form 0 to 36" }, 
+		Color: {randomColor: ["black","red"][Math.floor(Math.random()*2)], askcolor: "Enter color: red or black?"},	
+
+		Type : function() {
+            // მომხმარებელს ვეკითხებით ფერზე სურს სანაძლეოს დადება, თუ რიცხვზე.
+			const BetType = prompt("Enter type of the bet: number or color?");
+
+            // თუ აირჩია ფერი...
+			if (BetType==="color") {
+				const userInputColor = prompt(Betting.Color.askcolor);
+                // მოგება.
+				if (userInputColor===this.Color.randomColor){
+					alert("Winning color is "+this.Color.randomColor+". Your choice: "+userInputColor+". You win "+MoneyAmount*2+"Gel!")
+				}
+                // წაგება.
+				else {alert("Winning color is "+this.Color.randomColor+". Your choice: "+userInputColor+". You lose... ")}
+			}
+
+            // თუ აირჩია რიცხვი...
+			if (BetType==="number"){ 
+				const userInputNumber = prompt(Betting.Number.asknumber);
+                // მოგება.
+				if (userInputNumber===this.Number.randomNumber) {
+					alert("Winning number is "+parseInt(this.Number.randomNumber)+". Your choice: "+parseInt(userInputNumber)+". You win "+MoneyAmount*36+"Gel!")
+				}
+                // წაგება.
+				else{alert("Winning number is "+parseInt(this.Number.randomNumber)+". Your choice: "+parseInt(userInputNumber)+". You lose... ")}
+		}
+	}
+	}
+	Betting.Type();
+</script>
+</html>
